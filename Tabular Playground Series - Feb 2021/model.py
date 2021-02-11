@@ -66,10 +66,10 @@ def objective(trial, data=X, target=y):
     return rmse
 
 
-# study = optuna.create_study(direction='minimize')
-# study.optimize(objective, n_trials=50)
-# print('Number of finished trials:', len(study.trials))
-# print('Best trial:', study.best_trial.params)
+study = optuna.create_study(direction='minimize')
+study.optimize(objective, n_trials=50)
+print('Number of finished trials:', len(study.trials))
+print('Best trial:', study.best_trial.params)
 
 params = {'reg_alpha': 6.147694913504962,
           'reg_lambda': 0.002457826062076097,
@@ -100,7 +100,7 @@ print(scores, scores.mean())
 # print(scores, scores.mean())
 # endregion
 
-sub = pd.DataFrame()
-sub['Id'] = test_ID
-sub['target'] = lgb.predict(df_test.values)
-sub.to_csv('submission.csv', index=False)
+# sub = pd.DataFrame()
+# sub['Id'] = test_ID
+# sub['target'] = lgb.predict(df_test.values)
+# sub.to_csv('submission.csv', index=False)
