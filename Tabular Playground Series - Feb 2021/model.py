@@ -67,7 +67,7 @@ def objective(trial, data=X, target=y):
 
 
 study = optuna.create_study(direction='minimize')
-study.optimize(objective, n_trials=50)
+study.optimize(objective, n_trials=10)
 print('Number of finished trials:', len(study.trials))
 print('Best trial:', study.best_trial.params)
 

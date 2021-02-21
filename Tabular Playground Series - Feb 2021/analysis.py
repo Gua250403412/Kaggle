@@ -13,6 +13,7 @@ pd.set_option('display.float_format', lambda x: '{:.5f}'.format(x))  # 固定保
 df_train = pd.read_csv('tabular-playground-series-feb-2021/train.csv')  # 读取csv数据
 df_test = pd.read_csv('tabular-playground-series-feb-2021/test.csv')  # 读取csv数据
 id = df_train['id']
+df_train = df_train.drop(['id'], axis=1)
 
 # region 相关性热力图
 # correlation matrix
@@ -20,24 +21,24 @@ pearson_corr = df_train.corr(method='pearson')
 spearman_corr = df_train.corr(method='spearman')
 
 # target correlation matrix
-# plt.figure(figsize=(16, 9), dpi=300)
-# k = 15  # number of variables for heatmap
-# cols = pearson_corr.nlargest(k, 'target')['target'].index
-# print(cols)
-# cm = numpy.corrcoef(df_train[cols].values.T)
-# sns.set(font_scale=1.25)
-# hm = sns.heatmap(cm, cbar=True, annot=True, square=True, fmt='.2f', annot_kws={'size': 10}, yticklabels=cols.values, xticklabels=cols.values)
-# plt.title('Pearson Correlation of Top ' + str(k) + ' Features', y=1.05, size=15)
-# plt.show()
+plt.figure(figsize=(16, 9), dpi=300)
+k = 15  # number of variables for heatmap
+cols = pearson_corr.nlargest(k, 'target')['target'].index
+print(cols)
+cm = numpy.corrcoef(df_train[cols].values.T)
+sns.set(font_scale=1.25)
+hm = sns.heatmap(cm, cbar=True, annot=True, square=True, fmt='.2f', annot_kws={'size': 10}, yticklabels=cols.values, xticklabels=cols.values)
+plt.title('Pearson Correlation of Top ' + str(k) + ' Features', y=1.05, size=15)
+plt.show()
 
-# plt.figure(figsize=(16, 9), dpi=300)
-# cols = df_train.corr(method='spearman').nlargest(k, 'target')['target'].index
-# print(cols)
-# cm = numpy.corrcoef(df_train[cols].values.T)
-# sns.set(font_scale=1.25)
-# sns.heatmap(cm, cbar=True, annot=True, square=True, fmt='.2f', annot_kws={'size': 10}, yticklabels=cols.values, xticklabels=cols.values)
-# plt.title('Spearman Correlation of Top ' + str(k) + ' Features', y=1.05, size=15)
-# plt.show()
+plt.figure(figsize=(16, 9), dpi=300)
+cols = df_train.corr(method='spearman').nlargest(k, 'target')['target'].index
+print(cols)
+cm = numpy.corrcoef(df_train[cols].values.T)
+sns.set(font_scale=1.25)
+sns.heatmap(cm, cbar=True, annot=True, square=True, fmt='.2f', annot_kws={'size': 10}, yticklabels=cols.values, xticklabels=cols.values)
+plt.title('Spearman Correlation of Top ' + str(k) + ' Features', y=1.05, size=15)
+plt.show()
 # endregion
 
 pass
