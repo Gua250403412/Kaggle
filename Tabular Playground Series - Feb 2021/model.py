@@ -19,7 +19,7 @@ warnings.filterwarnings("ignore")
 pd.set_option('display.float_format', lambda x: '{:.5f}'.format(x))  # 固定保留5位小数
 
 df_train = pd.read_csv('tabular-playground-series-feb-2021/train.csv')  # 读取csv数据
-df_test = pd.read_csv('tabular-playground-series-feb-2021/test.csv')  # 读取csv数据
+df_test = pd.read_csv('tabular-playground-series-feb-2021/test.csv')  # 读取csv数据123
 test_ID = df_test['id']
 # region 数据预处理
 # cat0,cat1,cat2:A/B
